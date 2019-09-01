@@ -1,0 +1,12 @@
+#others
+.pdf
+
+#maven
+.mvn/
+target/
+
+#intellij
+.iml
+.iws
+.ipr
+.idea/
