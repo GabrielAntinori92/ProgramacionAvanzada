@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="js/validations.js"></script>
+    <title>Trabajo Practico 1</title>
+  </head>
+  <body>
+    <form>
+      Nombre:
+      <input id="inName" onblur="nameValidations()" type="text"></input><br>
+      Apellido:
+      <input id="inLastName" onblur="lastNameValidations()" type="text"></input><br>
+      Edad:
+      <input id="inCheckEdad" onchange="edadCheck()" type="checkbox"></input>
+      <input id="inEdad" oninput="edadValidation()" disabled="true" type="text"></input><br>
+      Email:
+      <input id="inEmail" onblur="emailValidation()" type="text"></input><br>
+      Contraseña:
+      <input id="inPwd" onblur="passwordValidation()" type="password"></input><br>
+    </form>
+  </body>
+  
+</html>
