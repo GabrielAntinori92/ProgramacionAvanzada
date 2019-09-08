@@ -1,23 +1,45 @@
-//Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest();
 
-//Open a new connection, using the GET request on the URL endpoint
-request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records',true);
+var url = 'https://utn-2019-avanzada2-tp5.herokuapp.com/records';
 
+loadTable(url)
+    .then((response) => {
+        var tbody = document.getElementById('tableid').getElementsByTagName('tbody')[0];
+        var data = JSON.parse(response);
 
-request.onload = function(){
-    var tbody = document.getElementById('tableid').getElementsByTagName('tbody')[0];
+        data.forEach(person =>{
+            addPerson(tbody,person);
+        });
+    })
+    .catch((reason) => {
+        console.log(Error(reason));
+    })
 
-    //Begin accessig JSON data here
-    var data = JSON.parse(this.response);
+function loadTable(url){
+    return new Promise((resolve,reject)=>{
+        //Create a request variable and assign a new XMLHttpRequest object to it.
+        var request = new XMLHttpRequest();
 
-    data.forEach(person =>{
-        addPerson(tbody,person);
+        //Open a new connection, using the GET request on the URL endpoint
+        request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records',true);
+
+        request.onload = function(){
+            //Begin accessig JSON data here
+            if(request.status == 200){
+                resolve(request.response)
+            }else{
+                reject(Error('Data couldnt be loaded. Error: ' + request.statusText));
+            }
+        }
+
+        request.onerror = function(){
+            reject(Error('There was an network error.'));
+        }
+
+        //Send request
+        request.send();
     });
 }
 
-//Send request
-request.send();
 
 function addPerson(tbody,person){
     var row = tbody.insertRow(-1);
@@ -31,7 +53,6 @@ function addPerson(tbody,person){
         index++;
     });
 
-    console.log(row);
 }
 
 function personToArray(person){
@@ -46,3 +67,8 @@ function personToArray(person){
 
     return attributes;
 }
+
+ 
+
+
+
