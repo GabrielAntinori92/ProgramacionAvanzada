@@ -1,8 +1,9 @@
 
-var url = 'https://utn-2019-avanzada2-tp5.herokuapp.com/records';
+var url1 = 'https://utn-2019-avanzada2-tp5.herokuapp.com/records';
 
-loadTable(url)
+loadTable(url1)
     .then((response) => {
+        
         var tbody = document.getElementById('tableid').getElementsByTagName('tbody')[0];
         var data = JSON.parse(response);
 
@@ -13,6 +14,7 @@ loadTable(url)
     .catch((reason) => {
         console.log(Error(reason));
     })
+//--------------------------------------------------------------------------
 
 function loadTable(url){
     return new Promise((resolve,reject)=>{
@@ -20,7 +22,7 @@ function loadTable(url){
         var request = new XMLHttpRequest();
 
         //Open a new connection, using the GET request on the URL endpoint
-        request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records',true);
+        request.open('GET',url,true);
 
         request.onload = function(){
             //Begin accessig JSON data here
