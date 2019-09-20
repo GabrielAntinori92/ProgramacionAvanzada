@@ -6,10 +6,17 @@ loadTable(url1)
         
         var tbody = document.getElementById('tableid').getElementsByTagName('tbody')[0];
         var data = JSON.parse(response);
-
         data.forEach(person =>{
-            addPerson(tbody,person);
+            loadPerson(tbody,person);
         });
+        //------------------------------------------------------------------
+        //https://www.jqueryscript.net/table/sorting-filtering-pagination-fancytable.html
+        $("#tableid").fancyTable({
+            sortable: false,
+            pagination: true,
+            searchable: false
+        })
+        //-----------------------------------------------------
     })
     .catch((reason) => {
         console.log(Error(reason));
@@ -43,7 +50,7 @@ function loadTable(url){
 }
 
 
-function addPerson(tbody,person){
+function loadPerson(tbody,person){
     var row = tbody.insertRow(-1);
     var attributes = personToArray(person);
     var index = 0;
@@ -65,12 +72,12 @@ function personToArray(person){
     attributes.push(person.last_name);
     attributes.push(person.email);
     attributes.push(person.gender);
-    attributes.push(person.last_connected_id);
+    attributes.push(person.last_connected_ip);
 
     return attributes;
 }
 
- 
+
 
 
 
