@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/table.js"></script>
     <title>Table</title>
 </head>
 <body>
-    <form id="formThead" onsubmit="getTableHeadings()">
-        Table Heading: <input type="text" name="heading"><br>
+    <form id="inputs" onsubmit="generateTable(); return false;">
+        Columns: <input type="text" name="columns"><br>
+        Rows: <input type="text" name="rows"><br>
         <input type="submit" value="Submit">
-    </form> 
+    </form>
+    
+    <table id="table">
+        
+    </table>
 </body>
 </html>
